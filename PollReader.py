@@ -44,29 +44,19 @@ class PollReader():
         }
 
     def build_data_dict(self):
-        """
-        Reads all of the raw data from the CSV and builds a dictionary where
-        each key is the name of a column in the CSV, and each value is a list
-        containing the data for each row under that column heading.
-
-        There may be a couple bugs in this that you will need to fix.
-        Remember that the first row of a CSV contains all of the column names,
-        and each value in a CSV is seperated by a comma.
-        """
-
         # iterate through each row of the data
         for i in self.raw_data:
 
             # split up the row by column
-            seperated = i.split(' ')
+            seperated = i.strip().split(',')
 
             # map each part of the row to the correct column
             self.data_dict['month'].append(seperated[0])
             self.data_dict['date'].append(int(seperated[1]))
             self.data_dict['sample'].append(int(seperated[2]))
-            self.data_dict['sample type'].append(seperated[2])
-            self.data_dict['Harris result'].append(float(seperated[3]))
-            self.data_dict['Trump result'].append(float(seperated[4]))
+            self.data_dict['sample type'].append(seperated[3])
+            self.data_dict['Harris result'].append(float(seperated[4]))
+            self.data_dict['Trump result'].append(float(seperated[5]))
 
 
     def highest_polling_candidate(self):
