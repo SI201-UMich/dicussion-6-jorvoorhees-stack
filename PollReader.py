@@ -85,17 +85,14 @@ class PollReader():
 
 
     def polling_history_change(self):
-        """
-        Calculate the change in polling averages between the earliest and latest polls.
+       first_30_harris = self.data_dict['Harris result'][:30]
+       last_30_harris = self.data_dict['Harris result'][-30:]
+       first_30_trump = self.data_dict['Trump result'][:30]
+       last_30_trump = self.data_dict['Trump result'][-30:]
 
-        This method calculates the average result for each candidate in the earliest 30 polls
-        and the latest 30 polls, then returns the net change.
-
-        Returns:
-            tuple: A tuple containing the net change for Harris and Trump, in that order.
-                   Positive values indicate an increase, negative values indicate a decrease.
-        """
-        pass
+       harris_change = (sum(last_30_harris) / len(last_30_harris)) - (sum(first_30_harris) / len(first_30_harris))
+       trump_change = (sum(last_30_trump) / len(last_30_trump)) - (sum(first_30_trump) / len(first_30_trump))
+       return harris_change, trump_change 
 
 
 class TestPollReader(unittest.TestCase):
